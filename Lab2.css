@@ -8,7 +8,8 @@ body {
     padding: 0;
     background-color: #FFFAFA;
     font-weight: bold;
-    background : url("jeopardy.jpg");
+    background : url("jeopardy.jpg") no-repeat fixed center;
+    bac
 
 }
 
@@ -38,7 +39,7 @@ footer {
 }
 
 #categories {
-    display: grid;
+    display:grid;
     grid-template-columns: repeat(5, 1fr);
     height: 20%;
     grid-column-gap: 5px;
@@ -62,7 +63,6 @@ footer {
 }
 
 title {
-  text-decoration-color: red;
   border: width style color;
 
 }

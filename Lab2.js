@@ -33,26 +33,28 @@ getData('http://jservice.io/api/categories?count=5&offset=10') // get the date f
         Promise.all(fetchQuestions)
             .then((res) => {
                 for (const r of res) {
-                    let c = 0;
+                    let c = 0; //using let in order to be see only in the for function
                     for (const question of r['clues']) {
                         c += 1;
-                        let div = document.createElement('div');
-                        let points = document.createTextNode(question['value']);
-                        div.appendChild(points);
+                        let div = document.createElement('div'); //create a 'div' element
+                        let points = document.createTextNode(question['value']); // create a text 'value'
+                        div.appendChild(points); //append the let point to a 'div'
                         div.id = question['id'];
-                        div.classList.add('question');
-                        div.setAttribute('data-value', question['value']);
-                        div.setAttribute('data-question', question['question']);
-                        div.setAttribute('data-show', 'false');
+                        div.classList.add('question'); //the class id become 'questions'
+                        div.setAttribute('data-value', question['value']); // data-value get question['value'] as value
+                        div.setAttribute('data-question', question['question']); // data-question get question['question'] as value
+                        div.setAttribute('data-show', 'false'); //data-show get 'False' as value
 
-                        div.addEventListener('click', (event) => {
-                            let _div = event.target;
-                            if (_div.getAttribute('data-show').indexOf('true') > -1) {
-                                _div.innerHTML = _div.getAttribute('data-value');
-                                _div.setAttribute('data-show', 'false');
+
+                        // this block define what happened after the user action : the click.  How the value become the question and the opposite way after the user click
+                        div.addEventListener('click', (event) => {  //create a event with the user click
+                            let _div = event.target; //_div became the event.target
+                            if (_div.getAttribute('data-show').indexOf('true') > -1) { // condition de la boucle : si 'data-show' become 'true'
+                                _div.innerHTML = _div.getAttribute('data-value'); // change the HTML content of _div into the value in data-value
+                                _div.setAttribute('data-show', 'false'); // then, it become false
                             } else {
-                                _div.innerHTML = _div.getAttribute('data-question');
-                                _div.setAttribute('data-show', 'true');
+                                _div.innerHTML = _div.getAttribute('data-question');  // change the html content of _div into the value in data-question
+                                _div.setAttribute('data-show', 'true'); // then , it become true
 
                             }
                         });
