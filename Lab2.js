@@ -10,24 +10,24 @@ let getData = (url) => {
                 reject(xhr.responseText); // on ne prend pas la reponse de la requete si elle n'est pas sucessfull
             }
         };
-        xhr.onerror = () => reject(Error('Network Error'));
-        xhr.send();
+        xhr.onerror = () => reject(Error('Network Error')); // si la requete failed
+        xhr.send();  // send the request to the serveur, cause it's asynchronous as default
     });
 };
 
-getData('http://jservice.io/api/categories?count=5&offset=10')
-    .then((res) => {
+getData('http://jservice.io/api/categories?count=5&offset=10') // get the date from the web
+    .then((res) => {  // res is here to send back the http response
         let fetchQuestions = [];
-        const categories = document.querySelector('#categories');
-        const questions = document.querySelector('#questions');
-        for (const category of res) {
+        const categories = document.querySelector('#categories'); // querySelector renvoie l'objet ayant pour classe CSS categories
+        const questions = document.querySelector('#questions'); // querySelector renvoie l'objet ayant pour classe CSS questions
+        for (const category of res) {   //select the category in the res
             fetchQuestions.push(getData(`http://jservice.io/api/category?id=${category['id']}`));
-            let div = document.createElement('div');
-            let title = document.createTextNode(category['title']);
-            div.appendChild(title);
+            let div = document.createElement('div'); //create a div element
+            let title = document.createTextNode(category['title']);  // create a title
+            div.appendChild(title); //append the title to 'div'
             div.id = category['id'];
             div.classList.add('category');
-            categories.appendChild(div);
+            categories.appendChild(div); //append the div to #categories
         }
 
         Promise.all(fetchQuestions)
