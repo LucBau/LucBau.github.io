@@ -59,15 +59,15 @@ getData('http://jservice.io/api/categories?count=5&offset=10') // get the date f
                             }
                         });
 
-                        questions.appendChild(div);
+                        questions.appendChild(div); //append the let div to 'questions'
                         if (c == 5) break;
                     }
                 }
             })
-            .catch((error) => {
+            .catch((error) => {   //out of the second then
                 alert(error);
             });
     })
-    .catch((error) => {
+    .catch((error) => { //out of the first then
         alert(error);
     });
