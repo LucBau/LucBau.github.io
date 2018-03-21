@@ -1,16 +1,16 @@
 let getData = (url) => {
-    return new Promise((resolve, reject) => {  // creation de la promesse
+    return new Promise((resolve, reject) => {  // create the promesse
         let xhr = new XMLHttpRequest();   // XMLHttpRequest = xhr
 
-        xhr.open('GET', url);  //si la prommesse est tenue
-        xhr.onload = () => {  // Debut de la condition si elle est rompue
-            if (xhr.status == 200) {   // status =200, signifie une requete sucessful
-                resolve(JSON.parse(xhr.response)); //JSON, permet de lire une data sur un serveur web, et de l'afficher sur une page web
+        xhr.open('GET', url);  //if the prommesse is true
+        xhr.onload = () => {  // start of the condition if she is broken
+            if (xhr.status == 200) {   // status =200, means a  sucessful request
+                resolve(JSON.parse(xhr.response)); //JSON,  Allowed the user to read a data on a web serveur and to print it on a web page
             } else {
-                reject(xhr.responseText); // on ne prend pas la reponse de la requete si elle n'est pas sucessfull
+                reject(xhr.responseText); //  We do not take the answers of the request if she's not succesfull
             }
         };
-        xhr.onerror = () => reject(Error('Network Error')); // si la requete failed
+        xhr.onerror = () => reject(Error('Network Error')); // if the request failed
         xhr.send();  // send the request to the serveur, cause it's asynchronous as default
     });
 };
